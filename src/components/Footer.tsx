@@ -1,5 +1,9 @@
-import { Flex, FlexProps } from '@chakra-ui/react'
+import { Flex, Text } from '@chakra-ui/react'
+import '../helper/helper';
+import { getCurrentYear } from '../helper/helper';
 
-export const Footer = (props: FlexProps) => (
-  <Flex as="footer" py="8rem" {...props} />
+export const Footer = () => (
+  <Flex as="footer" justifyContent="center" py="8rem" >
+    <Text>{getCurrentYear()} | <b>Yehezkiel Gunawan</b></Text>
+  </Flex>
 )
