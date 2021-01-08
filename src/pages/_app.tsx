@@ -1,14 +1,26 @@
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider } from "@chakra-ui/react";
+import { LiffProvider } from "react-liff";
+import theme from "../theme";
+import App from "next/app";
 
-import theme from '../theme'
-import { AppProps } from 'next/app'
+const LIFF_ID = process.env.MY_LIFF_ID;
+const stubEnabled = process.env.NODE_ENV !== "production";
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps, liffId }: any) {
   return (
-    <ChakraProvider resetCSS theme={theme}>
-      <Component {...pageProps} />
-    </ChakraProvider>
-  )
+    <LiffProvider liffId={liffId} stubEnabled={stubEnabled}>
+      <ChakraProvider resetCSS theme={theme}>
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </LiffProvider>
+  );
 }
 
-export default MyApp
+MyApp.getInitialProps = async (appContext: any) => {
+  const appProps = await App.getInitialProps(appContext);
+
+  const liffId = LIFF_ID;
+  return { ...appProps, liffId };
+};
+
+export default MyApp;

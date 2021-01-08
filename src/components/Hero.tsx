@@ -4,7 +4,7 @@ import { DarkModeSwitch } from "./DarkModeSwitch";
 export const Hero = ({ title }: { title: string }) => (
   <Flex
     alignItems="center"
-    mt="50px"
+    mt="30px"
     textAlign="left"
     bg="#5D9E94"
     borderRadius="10px"
