@@ -3,7 +3,7 @@ import "../helper/helper";
 import { getCurrentYear } from "../helper/helper";
 
 export const Footer = () => (
-  <Flex as="footer" justifyContent="center" py="8rem">
+  <Flex as="footer" justifyContent="center" py="4rem">
     <Text>
       {getCurrentYear()} | <b>Yehezkiel Gunawan</b>
     </Text>

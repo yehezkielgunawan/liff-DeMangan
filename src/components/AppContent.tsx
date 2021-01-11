@@ -12,7 +12,7 @@ export type userDataType = {
 export default function AppContent() {
   const [displayName, setDisplayName] = useState<string>(undefined);
   const [profilePic, setProfilePic] = useState<string>(undefined);
-  const { error, liff, isLoggedIn, ready, isInClient } = useLiff();
+  const { error, liff, isLoggedIn, ready } = useLiff();
 
   useEffect(() => {
     if (!isLoggedIn) return;
@@ -31,7 +31,7 @@ export default function AppContent() {
   const userDataProps: userDataType = {
     name: displayName,
     profilePic: profilePic,
-    isInClient: isInClient
+    isInClient: liff.isInClient()
   };
 
   const Contents = () => {
