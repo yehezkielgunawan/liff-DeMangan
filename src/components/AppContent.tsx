@@ -3,15 +3,16 @@ import { useEffect, useState } from "react";
 import { useLiff } from "react-liff";
 import MenuContainer from "./MenuContainer";
 
-export type userDataType =  {
-    name: string;
-    profilePic: string;
-}
+export type userDataType = {
+  name: string;
+  profilePic: string;
+  isInClient:boolean
+};
 
 export default function AppContent() {
   const [displayName, setDisplayName] = useState<string>(undefined);
   const [profilePic, setProfilePic] = useState<string>(undefined);
-  const { error, liff, isLoggedIn, ready } = useLiff();
+  const { error, liff, isLoggedIn, ready, isInClient } = useLiff();
 
   useEffect(() => {
     if (!isLoggedIn) return;
@@ -27,10 +28,11 @@ export default function AppContent() {
     })();
   }, [liff, isLoggedIn]);
 
-  const userDataProps: userDataType ={
-      name: displayName,
-      profilePic: profilePic
-  }
+  const userDataProps: userDataType = {
+    name: displayName,
+    profilePic: profilePic,
+    isInClient: isInClient
+  };
 
   const Contents = () => {
     if (error) return <p>Something error</p>;
@@ -50,7 +52,7 @@ export default function AppContent() {
       );
     }
 
-    return <MenuContainer {...userDataProps}/>;
+    return <MenuContainer {...userDataProps} />;
   };
   return <Contents />;
 }

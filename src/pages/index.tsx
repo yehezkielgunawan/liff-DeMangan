@@ -7,7 +7,7 @@ const Index = () => {
   return (
     <Container>
       <Hero />
-      <AppContent/>
+      <AppContent />
       <Footer />
     </Container>
   );
