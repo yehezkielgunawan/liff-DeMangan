@@ -4,7 +4,7 @@ import { drinks } from "../constants/drink";
 import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { userDataType } from "./AppContent";
-import { countQtyByType } from "../helper/helper";
+import { convertPriceToText, countQtyByType } from "../helper/helper";
 import { useToast } from "@chakra-ui/react";
 import MenuFormLayout, { MenuFormLayoutProps } from "./MenuFormLayout";
 
@@ -52,39 +52,39 @@ export default function MenuContainer({
   const { values, handleSubmit, setFieldValue } = useFormik<MenuFormValueType>({
     initialValues: initial_menus,
     onSubmit: () => {
-      // const template_message = `Hai ${name},\nTerima kasih telah memesan via DeMangan! Berikut adalah ringkasan pesanan anda:\n${
-      //   totalFoodQty > 0 ? `\n ${totalFoodQty} Makanan: ` : ""
-      // }${
-      //   totalFoodQty > 0
-      //     ? orderedItems
-      //         .filter((item) => item.type === MenuItemType.food)
-      //         .map(
-      //           (food) =>
-      //             `\n${food.name} (${convertPriceToText(food.price)}) * ${
-      //               food.qty
-      //             }\n`
-      //         )
-      //     : null
-      // }${totalDrinkQty > 0 ? `\n ${totalDrinkQty} Minuman` : ""}${
-      //   totalDrinkQty > 0
-      //     ? orderedItems
-      //         .filter((item) => item.type === MenuItemType.drink)
-      //         .map(
-      //           (drink) =>
-      //             `\n${drink.name} (${convertPriceToText(drink.price)}) * ${
-      //               drink.qty
-      //             }\n`
-      //         )
-      //     : null
-      // }\n\nTotal : ${convertPriceToText(
-      //   totalOrderPrice
-      // )}\n\nPesanan Anda akan segera diproses lebih lanjut!`;
+      const template_message = `Hai ${name},\nTerima kasih telah memesan via DeMangan! Berikut adalah ringkasan pesanan anda:\n${
+        totalFoodQty > 0 ? `\n ${totalFoodQty} Makanan: ` : ""
+      }${
+        totalFoodQty > 0
+          ? orderedItems
+              .filter((item) => item.type === MenuItemType.food)
+              .map(
+                (food) =>
+                  `\n${food.name} (${convertPriceToText(food.price)}) * ${
+                    food.qty
+                  }\n`
+              )
+          : null
+      }${totalDrinkQty > 0 ? `\n ${totalDrinkQty} Minuman` : ""}${
+        totalDrinkQty > 0
+          ? orderedItems
+              .filter((item) => item.type === MenuItemType.drink)
+              .map(
+                (drink) =>
+                  `\n${drink.name} (${convertPriceToText(drink.price)}) * ${
+                    drink.qty
+                  }\n`
+              )
+          : null
+      }\n\nTotal : ${convertPriceToText(
+        totalOrderPrice
+      )}\n\nPesanan Anda akan segera diproses lebih lanjut!`;
 
       if (liff.isInClient()) {
         liff.sendMessages([
           {
             type: "text",
-            text: "YAY Berhasil gan",
+            text: template_message
           },
         ]);
         toast({
