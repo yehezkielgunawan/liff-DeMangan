@@ -106,7 +106,7 @@ export default function MenuFormLayout({
             bg="orange"
             color="black"
             onClick={() =>
-              openWindow({ url: "https://yehezkielgunawan123.vercel.app" })
+              openWindow({ url: "https://liff-de-mangan.vercel.app/" })
             }
           >
             Buka di External Browser

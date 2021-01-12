@@ -1,4 +1,4 @@
-import { Box, Button, Text } from "@chakra-ui/react";
+import { Box, Button, Skeleton, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useLiff } from "react-liff";
 import MenuContainer from "./MenuContainer";
@@ -33,7 +33,7 @@ export default function AppContent() {
     name: displayName,
     profilePic: profilePic,
     liff: liff,
-    ready: ready
+    ready: ready,
   };
 
   const Contents = () => {
@@ -42,15 +42,17 @@ export default function AppContent() {
 
     if (!isLoggedIn) {
       return (
-        <Box mt="10px">
-          <Text fontSize="md">
-            You’re not logged in yet. Please login with your LINE account to use
-            this app.
-          </Text>
-          <Button colorScheme="teal" mt="5px" onClick={() => liff.login()}>
-            LOGIN
-          </Button>
-        </Box>
+        <Skeleton isLoaded={ready} fadeDuration={0.5}>
+          <Box mt="10px">
+            <Text fontSize="md">
+              You’re not logged in yet. Please login with your LINE account to
+              use this app.
+            </Text>
+            <Button colorScheme="teal" mt="5px" onClick={() => liff.login()}>
+              LOGIN
+            </Button>
+          </Box>
+        </Skeleton>
       );
     }
 
