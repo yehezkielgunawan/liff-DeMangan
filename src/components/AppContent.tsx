@@ -6,7 +6,8 @@ import MenuContainer from "./MenuContainer";
 export type userDataType = {
   name: string;
   profilePic: string;
-  isInClient:boolean
+  liff: any;
+  ready: boolean;
 };
 
 export default function AppContent() {
@@ -31,7 +32,8 @@ export default function AppContent() {
   const userDataProps: userDataType = {
     name: displayName,
     profilePic: profilePic,
-    isInClient: liff.isInClient()
+    liff: liff,
+    ready: ready
   };
 
   const Contents = () => {

@@ -1,6 +1,5 @@
 import { AddIcon, MinusIcon } from "@chakra-ui/icons";
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
-import { loadGetInitialProps } from "next/dist/next-server/lib/utils";
 import { useEffect, useState } from "react";
 import { convertPriceToText } from "../helper/helper";
 import { OrderedItemType } from "./MenuContainer";
