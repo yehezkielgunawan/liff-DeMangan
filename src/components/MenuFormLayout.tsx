@@ -91,7 +91,7 @@ export default function MenuFormLayout({
       ) : null}
 
       <Box mt={4}>
-        {isLoggedIn && isInClient && (
+        {isLoggedIn && !isInClient && (
           <Button
             borderRadius={5}
             isFullWidth
@@ -106,7 +106,7 @@ export default function MenuFormLayout({
           <Button
             mt={3}
             isFullWidth
-            bg="orange"
+            bg="#FCCD5D"
             color="black"
             onClick={() =>
               openWindow({ url: "https://liff-de-mangan.vercel.app/" })
@@ -115,6 +115,9 @@ export default function MenuFormLayout({
             Buka di External Browser
           </Button>
         )}
+        {!isInClient ? (
+          <Text mt={4}>Anda sedang membuka via External Browser</Text>
+        ) : null}
       </Box>
       <Modal isOpen={isOpen} onClose={onClose} isCentered motionPreset="scale">
         <ModalOverlay />
