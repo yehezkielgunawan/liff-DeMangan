@@ -4,7 +4,7 @@ import { drinks } from "../constants/drink";
 import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { userDataType } from "./AppContent";
-import { convertPriceToText, countQtyByType } from "../helper/helper";
+import { countQtyByType } from "../helper/helper";
 import { useToast } from "@chakra-ui/react";
 import MenuFormLayout, { MenuFormLayoutProps } from "./MenuFormLayout";
 
@@ -22,7 +22,7 @@ export type MenuFormValueType = {
   items: Array<OrderedItemType>;
 };
 
-export let initial_menus: MenuFormValueType = {
+let initial_menus: MenuFormValueType = {
   items: [
     ...foods.map((food) => ({
       ...food,
@@ -47,47 +47,54 @@ export default function MenuContainer({
   const [totalFoodQty, setTotalFoodQty] = useState<number>(0);
   const [totalDrinkQty, setTotalDrinkQty] = useState<number>(0);
   const [totalOrderPrice, setTotalOrderPrice] = useState<number>(0);
+  const toast = useToast();
 
   const { values, handleSubmit, setFieldValue } = useFormik<MenuFormValueType>({
     initialValues: initial_menus,
     onSubmit: () => {
-      const template_message = `Hai ${name},\nTerima kasih telah memesan via DeMangan! Berikut adalah ringkasan pesanan anda:\n${
-        totalFoodQty > 0 ? `\n ${totalFoodQty} Makanan: ` : ""
-      }${
-        totalFoodQty > 0
-          ? orderedItems
-              .filter((item) => item.type === MenuItemType.food)
-              .map(
-                (food) =>
-                  `\n${food.name} (${convertPriceToText(food.price)}) * ${
-                    food.qty
-                  }\n`
-              )
-          : null
-      }${totalDrinkQty > 0 ? `\n ${totalDrinkQty} Minuman` : ""}${
-        totalDrinkQty > 0
-          ? orderedItems
-              .filter((item) => item.type === MenuItemType.drink)
-              .map(
-                (drink) =>
-                  `\n${drink.name} (${convertPriceToText(drink.price)}) * ${
-                    drink.qty
-                  }\n`
-              )
-          : null
-      }\n\nTotal : ${convertPriceToText(
-        totalOrderPrice
-      )}\n\nPesanan Anda akan segera diproses lebih lanjut!`;
+      // const template_message = `Hai ${name},\nTerima kasih telah memesan via DeMangan! Berikut adalah ringkasan pesanan anda:\n${
+      //   totalFoodQty > 0 ? `\n ${totalFoodQty} Makanan: ` : ""
+      // }${
+      //   totalFoodQty > 0
+      //     ? orderedItems
+      //         .filter((item) => item.type === MenuItemType.food)
+      //         .map(
+      //           (food) =>
+      //             `\n${food.name} (${convertPriceToText(food.price)}) * ${
+      //               food.qty
+      //             }\n`
+      //         )
+      //     : null
+      // }${totalDrinkQty > 0 ? `\n ${totalDrinkQty} Minuman` : ""}${
+      //   totalDrinkQty > 0
+      //     ? orderedItems
+      //         .filter((item) => item.type === MenuItemType.drink)
+      //         .map(
+      //           (drink) =>
+      //             `\n${drink.name} (${convertPriceToText(drink.price)}) * ${
+      //               drink.qty
+      //             }\n`
+      //         )
+      //     : null
+      // }\n\nTotal : ${convertPriceToText(
+      //   totalOrderPrice
+      // )}\n\nPesanan Anda akan segera diproses lebih lanjut!`;
 
       if (liff.isInClient()) {
         liff.sendMessages([
           {
             type: "text",
-            text: template_message,
+            text: "YAY Berhasil gan",
           },
         ]);
+        toast({
+          title: "Selamat!",
+          description: "Pesan telah terkirim ke LINE and!",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
       } else {
-        const toast = useToast();
         toast({
           title: "Mohon maaf",
           description:
