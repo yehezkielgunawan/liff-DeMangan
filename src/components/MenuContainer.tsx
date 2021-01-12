@@ -62,8 +62,8 @@ export default function MenuContainer({
                 (food) =>
                   `\n${food.name} (${convertPriceToText(food.price)}) * ${
                     food.qty
-                  }` + "\n"
-              )
+                  }`
+              ) + "\n"
           : null
       }${totalDrinkQty > 0 ? `\n ${totalDrinkQty} Minuman` : ""}${
         totalDrinkQty > 0
@@ -73,8 +73,8 @@ export default function MenuContainer({
                 (drink) =>
                   `\n${drink.name} (${convertPriceToText(drink.price)}) * ${
                     drink.qty
-                  }` + "\n"
-              )
+                  }`
+              ) + "\n"
           : null
       }\n\nTotal : ${convertPriceToText(
         totalOrderPrice
@@ -89,7 +89,7 @@ export default function MenuContainer({
         ]);
         toast({
           title: "Selamat!",
-          description: "Pesan telah terkirim ke LINE and!",
+          description: "Pesan telah terkirim ke LINE anda!",
           status: "success",
           duration: 5000,
           isClosable: true,
