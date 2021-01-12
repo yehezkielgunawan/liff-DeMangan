@@ -38,7 +38,6 @@ export default function AppContent() {
 
   const Contents = () => {
     if (error) return <p>Something error</p>;
-    if (!ready) return <p>Loading...</p>;
 
     if (!isLoggedIn) {
       return (
