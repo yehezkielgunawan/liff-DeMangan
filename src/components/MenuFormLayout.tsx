@@ -2,7 +2,6 @@ import {
   Box,
   Button,
   Heading,
-  MenuItem,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -16,7 +15,6 @@ import {
 } from "@chakra-ui/react";
 import { OpenWindowParams } from "@line/liff/dist/lib/client/openWindow";
 import { FormikErrors } from "formik";
-import { read } from "fs";
 import { convertPriceToText } from "../helper/helper";
 import ItemMenu from "./ItemMenu";
 import ListMenu, { OrderMenuListProps } from "./ListMenu";

@@ -1,6 +1,5 @@
-import { Box, Heading, Text } from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/react";
 import { FormikErrors } from "formik";
-import { useEffect } from "react";
 import ItemMenu from "./ItemMenu";
 import { MenuFormValueType, MenuItemType } from "./MenuContainer";
 
