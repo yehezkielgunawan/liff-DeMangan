@@ -9,6 +9,7 @@ import ListMenu from "./ListMenu";
 import RingkasanMenu from "./RingkasanMenu";
 import { convertPriceToText, countQtyByType } from "../helper/helper";
 import { useToast } from "@chakra-ui/react";
+import MenuFormLayout, { MenuFormLayoutProps } from "./MenuFormLayout";
 
 export enum MenuItemType {
   food = "food",
@@ -43,7 +44,7 @@ export default function MenuContainer({
   name,
   profilePic,
   liff,
-  ready
+  ready,
 }: userDataType) {
   const [orderedItems, setOrderedItems] = useState<OrderedItemType[]>([]);
   const [totalFoodQty, setTotalFoodQty] = useState<number>(0);
@@ -115,24 +116,26 @@ export default function MenuContainer({
     setTotalOrderPrice(totalOrderValue);
   }, [values]);
 
+  const menuFormLayoutPros: MenuFormLayoutProps = {
+    ready,
+    displayName: name,
+    profilePic,
+    isInClient: liff.isInClient(),
+    isLoggedIn: liff.isLoggedIn(),
+    orderedItems,
+    totalFoodQty,
+    totalDrinkQty,
+    totalOrderValue: totalOrderPrice,
+    values,
+    setFieldValue,
+    handleSubmit,
+    logout: liff.logout,
+    openWindow: liff.openWindow,
+  };
 
-
-  if (liff.isLoggedIn()) {
-    return (
-      <>
-        <MenuHeader name={name} profilePic={profilePic}></MenuHeader>
-        <p>Logged in</p>
-        <ListMenu {...initial_menus} />
-        <RingkasanMenu />
-      </>
-    );
-  }
   return (
     <>
-      <MenuHeader name={name} profilePic={profilePic}></MenuHeader>
-      <p>Gak</p>
-      <ListMenu {...initial_menus} />
-      <RingkasanMenu />
+      <MenuFormLayout {...menuFormLayoutPros} />
     </>
   );
 }
