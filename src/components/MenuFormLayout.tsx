@@ -81,17 +81,7 @@ export default function MenuFormLayout({
 
   return (
     <Box>
-      <Skeleton
-        isLoaded={
-          ready &&
-          profilePic &&
-          profilePic.length >= 0 &&
-          displayName &&
-          displayName.length >= 0
-        }
-        fadeDuration={1}
-        height={12}
-      >
+      <Skeleton isLoaded={ready} fadeDuration={1} height={12}>
         <MenuHeader name={displayName} profilePic={profilePic} />
       </Skeleton>
       <ListMenu {...orderMenuListProps} />
