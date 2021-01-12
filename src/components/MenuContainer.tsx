@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { userDataType } from "./AppContent";
 import { convertPriceToText, countQtyByType } from "../helper/helper";
-import { useToast } from "@chakra-ui/react";
+import { Skeleton, useToast } from "@chakra-ui/react";
 import MenuFormLayout, { MenuFormLayoutProps } from "./MenuFormLayout";
 
 export enum MenuItemType {
@@ -138,8 +138,8 @@ export default function MenuContainer({
   };
 
   return (
-    <>
+    <Skeleton isLoaded={ready} fadeDuration={0.5}>
       <MenuFormLayout {...menuFormLayoutPros} />
-    </>
+    </Skeleton>
   );
 }
