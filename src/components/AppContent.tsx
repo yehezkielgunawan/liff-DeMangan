@@ -11,8 +11,8 @@ export type userDataType = {
 };
 
 export default function AppContent() {
-  const [displayName, setDisplayName] = useState<string>(undefined);
-  const [profilePic, setProfilePic] = useState<string>(undefined);
+  const [displayName, setDisplayName] = useState<string>("");
+  const [profilePic, setProfilePic] = useState<string>("");
   const { error, liff, isLoggedIn, ready } = useLiff();
 
   useEffect(() => {
