@@ -91,7 +91,7 @@ export default function MenuFormLayout({
       ) : null}
 
       <Box mt={4}>
-        {isLoggedIn && (
+        {isLoggedIn && isInClient && (
           <Button
             borderRadius={5}
             isFullWidth

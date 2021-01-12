@@ -62,7 +62,7 @@ export default function MenuContainer({
                 (food) =>
                   `\n${food.name} (${convertPriceToText(food.price)}) * ${
                     food.qty
-                  }\n`
+                  }` + "\n"
               )
           : null
       }${totalDrinkQty > 0 ? `\n ${totalDrinkQty} Minuman` : ""}${
@@ -73,7 +73,7 @@ export default function MenuContainer({
                 (drink) =>
                   `\n${drink.name} (${convertPriceToText(drink.price)}) * ${
                     drink.qty
-                  }\n`
+                  }` + "\n"
               )
           : null
       }\n\nTotal : ${convertPriceToText(
