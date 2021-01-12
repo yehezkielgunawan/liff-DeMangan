@@ -86,7 +86,10 @@ export default function MenuFormLayout({
       </Skeleton>
       <ListMenu {...orderMenuListProps} />
 
-      <RingkasanMenu {...orderSummaryProps} />
+      {values.items.filter((item) => item.qty > 0).length > 0 ? (
+        <RingkasanMenu {...orderSummaryProps} />
+      ) : null}
+
       <Box mt={4}>
         {isLoggedIn && (
           <Button
