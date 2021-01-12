@@ -109,6 +109,19 @@ export default function MenuFormLayout({
             Logout
           </Button>
         )}
+        {isInClient && (
+          <Button
+            mt={3}
+            isFullWidth
+            bg="orange"
+            color="black"
+            onClick={() =>
+              openWindow({ url: "https://yehezkielgunawan123.vercel.app" })
+            }
+          >
+            Buka di External Browser
+          </Button>
+        )}
       </Box>
       <Modal isOpen={isOpen} onClose={onClose} isCentered motionPreset="scale">
         <ModalOverlay />
